@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Priyankaaa💫 Birthday</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {margin:0;padding:0;box-sizing:border-box;}
+    body {
+      min-height:100vh; /* changed from height:100vh */
+      background: radial-gradient(ellipse at center, #1a237e 0%, #0d1421 50%, #000051 100%);
+      font-family:'Inter', sans-serif;
+      color:white;
+      position:relative;
+      overflow-x:hidden; /* allow vertical scroll, block sideways */
+    }
+
+    /* Stars */
+    .stars {position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+    .star {position:absolute;width:2px;height:2px;background:white;border-radius:50%;animation:twinkle 5s infinite;}
+    @keyframes twinkle {0%,100%{opacity:.3;transform:scale(1);}50%{opacity:1;transform:scale(1.3);}}
+
+    /* Lanterns */
+    .lantern {position:absolute;bottom:-120px;width:40px;height:60px;border-radius:15px;animation:floatUp 12s linear infinite;box-shadow:0 0 25px rgba(255,255,255,0.6);filter:blur(0.5px);}
+    .lantern::before{content:'';position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:20px;height:8px;background:rgba(139,69,19,.8);border-radius:4px;}
+    .lantern::after{content:'';position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);width:2px;height:15px;background:rgba(139,69,19,.6);}
+    @keyframes floatUp{0%{transform:translateY(0) scale(.7) rotate(-5deg);opacity:.7;}10%{opacity:1;}90%{opacity:1;}100%{transform:translateY(-130vh) scale(1.3) rotate(5deg);opacity:0;}}
+
+    /* Floating Toggle Button */
+    .toggle-btn {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      z-index: 20;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 12px 18px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(0,0,0,.3);
+      transition: 0.3s;
+    }
+    .toggle-btn:hover {background: rgba(255,255,255,0.3);}
+
+    /* Glass Panel */
+    .glass-panel {
+      position: relative; /* changed from fixed so it scrolls with page */
+      margin: 10% auto;
+      width: 90%;
+      max-width: 650px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      text-align: center;
+      color: #fff;
+      display: none;
+      z-index: 15;
+    }
+
+    /* Hero */
+    .hero {text-align:center;animation:fadeIn 2s ease-in-out;}
+    .hero h1 {font-family:'Great Vibes',cursive;font-size:clamp(2.5rem,6vw,5rem);color:#ffd700;text-shadow:0 0 20px rgba(255,215,0,.7);}
+    .hero h2 {margin-top:10px;font-weight:300;font-size:1.3rem;color:#e0e0e0;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+
+    /* Flip card */
+    .card {margin:30px auto 40px;width:280px;height:180px;perspective:1000px;}
+    .card-inner {position:relative;width:100%;height:100%;transition:transform 1s;transform-style:preserve-3d;cursor:pointer;}
+    .card:hover .card-inner {transform:rotateY(180deg);}
+    .card-front,.card-back {
+      position:absolute;width:100%;height:100%;border-radius:15px;backface-visibility:hidden;display:flex;justify-content:center;align-items:center;padding:20px;box-shadow:0 10px 25px rgba(0,0,0,.3);
+    }
+    .card-front {background:linear-gradient(135deg,#ff9a9e,#fad0c4);color:#333;font-weight:600;}
+    .card-back {background:linear-gradient(135deg,#89f7fe,#66a6ff);transform:rotateY(180deg);color:#222;font-size:.95rem;text-align:center;}
+
+    /* Music Controls */
+    .music-controls {margin-top:20px;display:flex;flex-wrap:wrap;gap:15px;justify-content:center;}
+    .btn {padding:10px 20px;border:none;border-radius:30px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;cursor:pointer;font-size:.95rem;box-shadow:0 8px 20px rgba(118,75,162,.4);transition:.3s;}
+    .btn:hover{transform:translateY(-3px);}
+
+    /* Fireworks */
+    .firework {position:absolute;width:4px;height:4px;border-radius:50%;pointer-events:none;}
+    @keyframes explode {0%{transform:scale(0);opacity:1;}100%{transform:scale(18);opacity:0;}}
+
+    /* Memories slider */
+    .memories {margin-top:30px;overflow:hidden;width:80%;max-width:600px;}
+    .memories-track {display:flex;gap:30px;animation:scrollMemories 20s linear infinite;}
+    .memory {min-width:200px;padding:15px;background:rgba(255,255,255,.08);border-radius:20px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.3);}
+    @keyframes scrollMemories {0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+
+  <button class="toggle-btn" onclick="togglePanel()">💎</button>
+
+  <div class="glass-panel" id="glassPanel">
+    <div class="hero">
+      <h1>Happy Birthday Priyankaaa💫</h1>
+      <h2>Happy Birthday to the one who makes every moment brighter 🌸✨. May your day be filled with love, laughter, and all the happiness your heart deserves.</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-front">📧 Click Here 👉👸🏻</div>
+        <div class="card-back">"Priyankaaa💫, you light up every space like these lanterns. May this year bring you all the happiness you truly deserve."</div>
+      </div>
+    </div>
+
+    <div class="music-controls">
+      <button class="btn" onclick="playMusic()">▶ Play</button>
+      <button class="btn" onclick="pauseMusic()">⏸ Pause</button>
+      <button class="btn" onclick="changeTrack()">🔀 Next</button>
+      <button class="btn" onclick="createFireworks()">🎆 Fireworks</button>
+    </div>
+
+    <div class="memories">
+      <div class="memories-track">
+        <div class="memory">🌸 Stay blessed always</div>
+        <div class="memory">🎂 May your smile never fade</div>
+        <div class="memory">💫 Shine like the stars above</div>
+        <div class="memory">❤️ Loved by everyone around you</div>
+        <div class="memory">🎉 A year full of adventures</div>
+      </div>
+    </div>
+  </div>
+
+  <audio id="musicPlayer" preload="auto"></audio>
+
+  <script>
+    // Stars
+    function createStars(){
+      const starsContainer=document.getElementById('stars');
+      for(let i=0;i<100;i++){
+        const s=document.createElement('div');
+        s.className='star';
+        s.style.left=Math.random()*100+'%';
+        s.style.top=Math.random()*100+'%';
+        s.style.animationDelay=Math.random()*5+'s';
+        starsContainer.appendChild(s);
+      }
+    }
+    createStars();
+
+    // Lanterns
+    const lanternColors=["linear-gradient(135deg,#ff9a56,#ff6b35)","linear-gradient(135deg,#ffd93d,#ff9800)","linear-gradient(135deg,#74b9ff,#0984e3)","linear-gradient(135deg,#fd79a8,#e84393)","linear-gradient(135deg,#00b894,#00a085)","linear-gradient(135deg,#fdcb6e,#e17055)","linear-gradient(135deg,#a29bfe,#6c5ce7)"];
+    function createLantern(){
+      const l=document.createElement('div');
+      l.classList.add('lantern');
+      l.style.left=Math.random()*(window.innerWidth-40)+'px';
+      l.style.background=lanternColors[Math.floor(Math.random()*lanternColors.length)];
+      l.style.animationDuration=(8+Math.random()*6)+'s';
+      document.body.appendChild(l);
+      setTimeout(()=>l.remove(),15000);
+    }
+    setInterval(createLantern,900);
+    for(let i=0;i<4;i++){setTimeout(createLantern,i*400);}
+
+    // Fireworks
+    function createFireworks(){
+      const colors=['#ff6b6b','#4ecdc4','#45b7d1','#96ceb4','#feca57','#ff9ff3'];
+      for(let i=0;i<15;i++){
+        setTimeout(()=>{
+          const fw=document.createElement('div');
+          fw.className='firework';
+          fw.style.left=Math.random()*window.innerWidth+'px';
+          fw.style.top=Math.random()*window.innerHeight+'px';
+          fw.style.background=colors[Math.floor(Math.random()*colors.length)];
+          fw.style.animation='explode 1s ease-out forwards';
+          document.body.appendChild(fw);
+          setTimeout(()=>fw.remove(),1000);
+        },i*100);
+      }
+    }
+
+    // Music
+    const tracks = [
+        "./kingdom dance.m4a", 
+        "./rewrite the stars.m4a", 
+        "./million dreams.m4a"
+    ]; 
+    let currentTrack = 0;
+    const player = document.getElementById('musicPlayer');
+
+    function loadTrack(trackIndex) {
+        if (tracks.length > 0) {
+            player.src = tracks[trackIndex];
+        }
+    }
+    function playMusic() {
+      if (!player.src && tracks.length > 0) {
+        loadTrack(currentTrack);
+      }
+      player.play();
+    }
+    function pauseMusic() {
+      player.pause();
+    }
+    function changeTrack() {
+      if (tracks.length > 0) {
+        currentTrack = (currentTrack + 1) % tracks.length;
+        loadTrack(currentTrack);
+        player.play();
+      }
+    }
+    player.addEventListener('ended', function() {
+      changeTrack();
+    });
+    loadTrack(currentTrack);
+
+    // Toggle Glass Panel
+    function togglePanel(){
+      const panel=document.getElementById('glassPanel');
+      panel.style.display=(panel.style.display==='none'||panel.style.display==='')?'block':'none';
+    }
+
+    // Spacebar Fireworks
+    document.addEventListener('keydown',(e)=>{if(e.code==='Space'){e.preventDefault();createFireworks();}});
+  </script>
+</body>
+</html>
